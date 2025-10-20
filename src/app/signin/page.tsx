@@ -15,7 +15,7 @@ const VkIdAuth = () => {
 
     VKID.Config.init({
       app: 54244892,           // Вставьте сюда ID приложения VK ID
-      redirectUrl: 'http://localhost:3000/auth/callback', // URL редиректа
+      redirectUrl: 'https://vk-crm101.vercel.app/auth/callback', // URL редиректа
       state: rand(32),
       codeVerifier: rand(43),
       scope: 'email phone',

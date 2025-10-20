@@ -1,16 +1,28 @@
-"use client";
-import { signIn } from "next-auth/react";
+// components/VkIdAuth.js
+"use client"
+import React, { useEffect } from 'react';
+import * as VKID from '@vkid/sdk';
 
-export default function SignInPage() {
-  return (
-    <main style={{display:"grid",placeItems:"center",minHeight:"100vh",gap:16}}>
-      <h1>Вход</h1>
-      <button
-        onClick={() => signIn("vk", { callbackUrl: "/dashboard" })}
-        style={{padding:"10px 16px", fontWeight:600}}
-      >
-        Войти через VK
-      </button>
-    </main>
-  );
-}
+const VkIdAuth = () => {
+  useEffect(() => {
+    // Функция генерации случайной строки
+    const rand = (len = 43) => {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-';
+      let s = '';
+      for(let i=0; i<len; i++) s += chars.charAt(Math.floor(Math.random() * chars.length));
+      return s;
+    };
+
+    VKID.Config.init({
+      app: 54244892,           // Вставьте сюда ID приложения VK ID
+      redirectUrl: 'http://localhost:3000/auth/callback', // URL редиректа
+      state: rand(32),
+      codeVerifier: rand(43),
+      scope: 'email phone',
+    });
+  }, []);
+
+  return <button onClick={() => VKID.Auth.login()}>Войти через VK ID</button>;
+};
+
+export default VkIdAuth;

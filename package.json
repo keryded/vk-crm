@@ -17,6 +17,8 @@
     "@auth/core": "^0.41.0",
     "@auth/prisma-adapter": "^2.11.0",
     "@prisma/client": "^5.22.0",
+    "@vkid/sdk": "^2.6.2",
+    "axios": "^1.12.2",
     "next": "15.5.6",
     "next-auth": "^5.0.0-beta.29",
     "react": "^19.1.0",

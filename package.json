@@ -1,0 +1,42 @@
+{
+  "name": "vk-crm",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "dev:https": "concurrently -k -n next,ssl -c auto \"next dev\" \"local-ssl-proxy --source 3001 --target 3000 --cert certs/cert.pem --key certs/key.pem\"",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "prisma generate",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --name init_auth",
+    "prisma:deploy": "prisma migrate deploy"
+  },
+  "dependencies": {
+    "@auth/core": "^0.41.0",
+    "@auth/prisma-adapter": "^2.11.0",
+    "@prisma/client": "^5.22.0",
+    "next": "15.5.6",
+    "next-auth": "^5.0.0-beta.29",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.8.1",
+    "@types/react": "^19.2.2",
+    "concurrently": "^9.0.1",
+    "eslint": "^9.9.0",
+    "eslint-config-next": "15.5.6",
+    "local-ssl-proxy": "^2.0.5",
+    "prisma": "^5.22.0",
+    "typescript": "^5.4.5"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}

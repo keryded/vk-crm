@@ -1,15 +1,16 @@
+"use client";
+import { signIn } from "next-auth/react";
 
-import { signIn } from "@/auth"
- 
-export default function SignIn() {
+export default function SignInPage() {
   return (
-    <form
-      action={async () => {
-        "use server"
-        await signIn("vk", {redirectTo: '/dashboard'})
-      }}
-    >
-      <button type="submit">Signin with VK</button>
-    </form>
-  )
-} 
+    <main style={{display:"grid",placeItems:"center",minHeight:"100vh",gap:16}}>
+      <h1>Вход</h1>
+      <button
+        onClick={() => signIn("vk", { callbackUrl: "/dashboard" })}
+        style={{padding:"10px 16px", fontWeight:600}}
+      >
+        Войти через VK
+      </button>
+    </main>
+  );
+}
